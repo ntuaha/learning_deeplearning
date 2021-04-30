@@ -9,6 +9,9 @@ class Function:
         # for general purpose
         y = self.forward(x)
         output = Variable(y)
+        # P31
+        output.set_creator(self)
+        self.output = output
         return output
 
     def forward(self,x):
