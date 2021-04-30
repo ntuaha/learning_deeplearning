@@ -17,3 +17,12 @@ class Variable:
         # P31
         self.creator = func
     
+    def backward(self):
+        # P34
+        f = self.creator
+        if f is not None:
+            x = f.input
+            x.grad = f.backward(self.grad)
+            x.backward()
+
+    
