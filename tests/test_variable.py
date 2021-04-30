@@ -19,4 +19,12 @@ def test_check_data_is_different():
     x = Variable(data)
     assert x.data != np.array(2.0)
 
+def test_check_eq_function():
+    x = Variable(np.array(2.0))
+    y = Variable(np.array(2.0))
+    assert x == y
 
+def test_check_not_eq_function():
+    x = Variable(np.array(2.0))
+    y = Variable(np.array(3.0))
+    assert x != y
