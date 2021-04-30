@@ -44,4 +44,22 @@ def test_exp_diff():
     f = Exp()
     y = f(x)
     gy = f.backward(np.array(3))
-    assert gy == np.array(np.exp(2)*3)    
+    assert gy == np.array(np.exp(2)*3)
+
+
+def test_auto_link():
+    # P32
+    x = Variable(np.array(1.5))
+    A = Exp()
+    B = Square()
+    C = Square()
+    a = A(x)
+    b = B(a)
+    y = C(b)    
+    assert y.creator == C
+    assert y.creator.input == b
+    assert y.creator.input.creator == B
+    assert y.creator.input.creator.input == a
+    assert y.creator.input.creator.input.creator == A
+    assert y.creator.input.creator.input.creator.input == x
+
