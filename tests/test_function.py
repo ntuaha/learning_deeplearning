@@ -5,6 +5,7 @@ myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 from src.VARIABLE import Variable
 from src.FUNCTION import *
+from src.util import *
 import numpy as np
 
 
@@ -68,4 +69,12 @@ def test_auto_link():
     assert y.creator.input.creator.input == a
     assert y.creator.input.creator.input.creator == A
     assert y.creator.input.creator.input.creator.input == x
+
+def test_auto_grad_and_numerical_grad():
+    # P50
+    x = Variable(np.random.rand(1))
+    y = square(x)
+    y.backward()
+    num_grad = numerical_diff(square,x)
+    assert np.allclose(x.grad,num_grad)
 
