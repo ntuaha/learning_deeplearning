@@ -11,13 +11,15 @@ import numpy as np
 def test_numerical_diff():
     # P16
     f = Square()
-    x = Variable(np.array(2))
+    x = Variable(np.array(2.0))
     y = numerical_diff(f,x)
-    check_1 = Variable((f(Variable(np.array(2+1e-4))).data - f(Variable(np.array(2-1e-4))).data) / (2 * 1e-4))
+    v = np.array((f(Variable(np.array(2+1e-4))).data - f(Variable(np.array(2-1e-4))).data) / (2 * 1e-4))
+    check_1 = Variable(v)
     assert check_1.data == y
 
 def test_square_and_exp():
-    x = Variable(np.array(2))
+    x = Variable(np.array(2.0))
     y = square(exp(square(x)))
     y2 = Square()(Exp()(Square()(x)))
     assert y2 == y 
+

@@ -1,6 +1,12 @@
 from .VARIABLE import Variable
 import numpy as np
 
+
+def as_array(x):
+    if np.isscalar(x):
+        return np.array(x)
+    return x
+
 class Function:
     def __call__(self,input):
         self.input = input
@@ -8,7 +14,8 @@ class Function:
         # first version y = x ** 2
         # for general purpose
         y = self.forward(x)
-        output = Variable(y)
+        # P46
+        output = Variable(as_array(y))
         # P31
         output.set_creator(self)
         self.output = output

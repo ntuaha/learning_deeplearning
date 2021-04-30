@@ -5,6 +5,7 @@ myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 from src.VARIABLE import Variable
 from src.FUNCTION import *
+from src.util import *
 import numpy as np
 
 
@@ -54,3 +55,9 @@ def test_auto_grad():
     y2.grad = np.array(grad)
     y2.backward()
     assert x2.grad == x.grad
+
+def test_default_grad():
+    x = Variable(np.array(2.0))
+    y = square(x)
+    y.backward()
+    assert y.grad == np.array(1)
