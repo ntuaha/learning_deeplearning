@@ -14,4 +14,4 @@ def test_numerical_diff():
     x = Variable(np.array(2))
     y = numerical_diff(f,x)
     check_1 = Variable((f(Variable(np.array(2+1e-4))).data - f(Variable(np.array(2-1e-4))).data) / (2 * 1e-4))
-    return check_1 == y
+    assert check_1.data == y

@@ -1,6 +1,7 @@
 class Variable:
     def __init__(self,data):
         self.data = data
+        self.grad = None
 
     def __eq__(self,that):
         # how to define a good eq function

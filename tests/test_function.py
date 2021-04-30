@@ -21,7 +21,7 @@ def test_check_exp():
     x = Variable(np.array(3))
     f = Exp()
     y = f(x)
-    return y == Variable(np.exp(x.data))
+    assert y == Variable(np.exp(x.data))
 
 def test_check_square_exp_square():
     # test for composite function
@@ -30,4 +30,18 @@ def test_check_square_exp_square():
     B = Exp()
     C = Square()
     y = C(B(A(x)))
-    return y == Variable(np.array(np.exp(np.array(3))))
+    assert y == Variable(np.exp(3*3)**2)
+
+def test_square_diff():
+    x = Variable(np.array(2))
+    f = Square()
+    y = f(x)
+    gy = f.backward(np.array(3))
+    assert gy == np.array(2*2*3)
+
+def test_exp_diff():
+    x = Variable(np.array(2))
+    f = Exp()
+    y = f(x)
+    gy = f.backward(np.array(3))
+    assert gy == np.array(np.exp(2)*3)    
