@@ -15,3 +15,9 @@ def test_numerical_diff():
     y = numerical_diff(f,x)
     check_1 = Variable((f(Variable(np.array(2+1e-4))).data - f(Variable(np.array(2-1e-4))).data) / (2 * 1e-4))
     assert check_1.data == y
+
+def test_square_and_exp():
+    x = Variable(np.array(2))
+    y = square(exp(square(x)))
+    y2 = Square()(Exp()(Square()(x)))
+    assert y2 == y 
