@@ -14,9 +14,11 @@ class Function:
         raise NotImplementedError()
 
 class Square(Function):
+    # P8
     def forward(self,x):
         return x ** 2
 
 class Exp(Function):
+    # P11
     def forward(self,x):
         return np.exp(x)
