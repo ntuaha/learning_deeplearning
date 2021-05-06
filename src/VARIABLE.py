@@ -32,14 +32,25 @@ class Variable:
         # P38
         '''
         # P43
+        # P67
+        # 預設用的 grad
         if self.grad is None:
             self.grad = np.ones_like(self.data)
 
+        # 丟入創造這個 Variable 的上游函數
         funcs = [self.creator]
+
         while funcs:
             f = funcs.pop()
-            x, y = f.input, f.output
-            x.grad = f.backward(y.grad)
-            if x.creator is not None:
-                funcs.append(x.creator)
+            # 取得下游的 grad            
+            gys = [output.grad for output in f.outputs]
+            # 計算上游函數 grad
+            gxs = f.backward(*gys)
+            if not isinstance(gxs,tuple):
+                gxs = (gxs,)
+            # 修改上游函數的 grad
+            for x,gx in zip(f.inputs,gxs):
+                x.grad = gx            
+                if x.creator is not None:
+                    funcs.append(x.creator)
     

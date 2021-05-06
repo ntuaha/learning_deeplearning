@@ -8,24 +8,28 @@ def as_array(x):
     return x
 
 class Function:
-    def __call__(self,input):
-        self.input = input
-        x = input.data
-        # first version y = x ** 2
-        # for general purpose
-        y = self.forward(x)
+    def __call__(self,*inputs):
+        
+        xs = [x.data for x in inputs]
+        ys = self.forward(*xs)
+        if not isinstance(ys, tuple):
+            ys = (ys,)
         # P46
-        output = Variable(as_array(y))
+        outputs = [Variable(as_array(y)) for y in ys]
         # P31
-        output.set_creator(self)
-        self.output = output
-        return output
+        for output in outputs:
+            output.set_creator(self)
+        self.inputs = inputs
+        self.outputs = outputs
+        return outputs if len(outputs) > 1 else outputs[0]
 
-    def forward(self,x):
+    def forward(self,xs):
         raise NotImplementedError()
 
     def backward(self,gy):
         raise NotImplementedError()
+
+        
 class Square(Function):
     # P8
     def forward(self,x):
@@ -33,7 +37,7 @@ class Square(Function):
     # P26
     def backward(self,gy):
         # 2 * x * x'
-        return 2 * self.input.data * gy
+        return 2 * self.inputs[0].data * gy
 
 class Exp(Function):
     # P11
@@ -42,4 +46,4 @@ class Exp(Function):
     # P26
     def backward(self,gy):
         # exp(x) * x'
-        return np.exp(self.input.data)*gy
+        return np.exp(self.inputs[0].data)*gy

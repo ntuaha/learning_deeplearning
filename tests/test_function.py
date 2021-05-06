@@ -64,11 +64,11 @@ def test_auto_link():
     b = B(a)
     y = C(b)    
     assert y.creator == C
-    assert y.creator.input == b
-    assert y.creator.input.creator == B
-    assert y.creator.input.creator.input == a
-    assert y.creator.input.creator.input.creator == A
-    assert y.creator.input.creator.input.creator.input == x
+    assert y.creator.inputs[0] == b
+    assert y.creator.inputs[0].creator == B
+    assert y.creator.inputs[0].creator.inputs[0] == a
+    assert y.creator.inputs[0].creator.inputs[0].creator == A
+    assert y.creator.inputs[0].creator.inputs[0].creator.inputs[0] == x
 
 def test_auto_grad_and_numerical_grad():
     # P50

@@ -43,9 +43,9 @@ def test_auto_grad():
     b = B(a)
     y = C(b)
     y.grad = np.array(grad)
-    C.input.grad = C.backward(y.grad)
-    B.input.grad = B.backward(C.input.grad)
-    A.input.grad = A.backward(B.input.grad)
+    C.inputs[0].grad = C.backward(y.grad)
+    B.inputs[0].grad = B.backward(C.inputs[0].grad)
+    A.inputs[0].grad = A.backward(B.inputs[0].grad)
 
     x2 = Variable(np.array(v))
     A2 = Square()
