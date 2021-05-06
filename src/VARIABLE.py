@@ -50,7 +50,10 @@ class Variable:
                 gxs = (gxs,)
             # 修改上游函數的 grad
             for x,gx in zip(f.inputs,gxs):
-                x.grad = gx            
+                if x.grad is None:                    
+                    x.grad = gx            
+                else:
+                    x.grad = x.grad + gx
                 if x.creator is not None:
                     funcs.append(x.creator)
     

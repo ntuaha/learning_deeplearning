@@ -13,6 +13,7 @@
 ### 20210507 - P58 - Pxx
 1. 調整 Variable 
     a. 修改變數反向傳播 P67
+    b. 變數再接收回傳 grad 的時候，必須接收所有當次回送回來的 grad P71
 2. 調整 Function
     a. Function __call__ 吃 input array, 輸出時多個 array, 單個就單元素
 

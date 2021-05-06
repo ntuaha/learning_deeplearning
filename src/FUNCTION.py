@@ -47,3 +47,17 @@ class Exp(Function):
     def backward(self,gy):
         # exp(x) * x'
         return np.exp(self.inputs[0].data)*gy
+
+class Add(Function):
+    def forward(self,x1,x2):
+        return x1+x2
+    
+    def backward(self,gy):
+        return gy,gy
+
+class Mutiple(Function):
+    def forward(self,x1,x2):
+        return x1*x2
+    
+    def backward(self,gy):
+        return self.inputs[1].data,self.inputs[0].data

@@ -78,3 +78,33 @@ def test_auto_grad_and_numerical_grad():
     num_grad = numerical_diff(square,x)
     assert np.allclose(x.grad,num_grad)
 
+def test_v2_function():
+    x1 = Variable(np.array(1))
+    x2 = Variable(np.array(2))
+    y = square(x1)
+    y.backward()
+    num_grad = numerical_diff(square,x1)
+    assert np.allclose(x1.grad,num_grad)
+
+def test_add():
+    x1 = Variable(np.array(1))
+    x2 = Variable(np.array(2))
+    y = add(x1,x2)
+    y.backward()
+    assert (x1.grad == 1) and (x2.grad == 1)
+
+def test_add_two_same_variable():
+    x1 = Variable(np.array(1))
+    x2 = Variable(np.array(2))
+    y = add(x1,x1)
+    y.backward()
+    assert (x1.grad == 2)
+
+
+def test_mutiple():
+    x1 = Variable(np.array(1))
+    x2 = Variable(np.array(2))
+    y = mutiple(x1,x2)
+    y.backward()
+    assert (x1.grad == 2) and (x2.grad == 1)
+

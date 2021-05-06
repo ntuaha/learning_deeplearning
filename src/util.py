@@ -17,3 +17,11 @@ def square(x):
 def exp(x):
     # P42
     return Exp()(x)
+
+def add(x1,x2):
+    # P42
+    return Add()(x1,x2)
+
+def mutiple(x1,x2):
+    # P42
+    return Mutiple()(x1,x2)    
