@@ -21,6 +21,9 @@ class Variable:
         # P31
         self.creator = func
     
+    def cleargrad(self):
+        self.grad = None
+        
     def backward(self):
         '''
         # P34

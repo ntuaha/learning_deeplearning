@@ -108,3 +108,14 @@ def test_mutiple():
     y.backward()
     assert (x1.grad == 2) and (x2.grad == 1)
 
+
+def test_double_usage_same_variable():
+    x = Variable(np.array(1))
+    y = add(add(x,x),x)    
+    y.backward()
+    assert (x.grad == 3)
+    x.cleargrad()
+    y = add(x,x)
+    y.backward()
+    assert (x.grad == 2)
+
