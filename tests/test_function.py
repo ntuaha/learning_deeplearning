@@ -119,3 +119,9 @@ def test_double_usage_same_variable():
     y.backward()
     assert (x.grad == 2)
 
+def test_complex_path():
+    x = Variable(np.array(2))
+    a = square(x)
+    y = add(square(a),square(a))
+    y.backward()
+    assert y.grad == np.array(32) and x.grad == np.array(64)

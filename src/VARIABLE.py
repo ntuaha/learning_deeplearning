@@ -9,6 +9,9 @@ class Variable:
         self.grad = None
         # P31
         self.creator = None
+        # P83
+        self.generation = 0
+
 
     def __eq__(self,that):
         # how to define a good eq function
@@ -20,6 +23,8 @@ class Variable:
     def set_creator(self,func):
         # P31
         self.creator = func
+        # P83
+        self.generation = func.generation + 1
     
     def cleargrad(self):
         self.grad = None
@@ -41,7 +46,16 @@ class Variable:
             self.grad = np.ones_like(self.data)
 
         # 丟入創造這個 Variable 的上游函數
-        funcs = [self.creator]
+        # P86
+        funcs = []
+        seen_set = set()
+        def add_func(f):
+            if f not in seen_set: # 剔除重複的f
+                funcs.append(f)
+                seen_set.add(f)
+                funcs.sort(key=lambda x:x.generation)
+        
+        add_func(self.creator)
 
         while funcs:
             f = funcs.pop()
@@ -58,5 +72,5 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
                 if x.creator is not None:
-                    funcs.append(x.creator)
+                    add_func(x.creator)
     

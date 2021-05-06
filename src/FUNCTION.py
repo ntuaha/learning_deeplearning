@@ -16,6 +16,8 @@ class Function:
             ys = (ys,)
         # P46
         outputs = [Variable(as_array(y)) for y in ys]
+        # P84
+        self.generation = max([x.generation for x in inputs])
         # P31
         for output in outputs:
             output.set_creator(self)
