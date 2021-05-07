@@ -60,7 +60,8 @@ class Variable:
         while funcs:
             f = funcs.pop()
             # 取得下游的 grad            
-            gys = [output.grad for output in f.outputs]
+            #gys = [output.grad for output in f.outputs]
+            gys = [output().grad for output in f.outputs]
             # 計算上游函數 grad
             gxs = f.backward(*gys)
             if not isinstance(gxs,tuple):
