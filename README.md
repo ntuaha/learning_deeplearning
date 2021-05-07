@@ -10,7 +10,17 @@
 ## 進度
 
 
-### 20210507 - P58 - Pxx
+### 20210507 - P
+參考工具 https://pypi.org/project/memory-profiler/
+調整 python kernel for jupyter
+```shell
+ipython kernel install --name "local-venv" --user
+# for pythoh 3.9
+# on correct environment
+ipython kernel install --name 'python3.9' --user
+```
+1. 記憶體節省
+### 20210506 - P58 - Pxx
 1. 調整 Variable 
     a. 修改變數反向傳播 P67
     b. 變數再接收回傳 grad 的時候，必須接收所有當次回送回來的 grad P71
