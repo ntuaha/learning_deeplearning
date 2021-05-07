@@ -19,8 +19,15 @@ ipython kernel install --name "local-venv" --user
 # on correct environment
 ipython kernel install --name 'python3.9' --user
 ```
-1. 記憶體節省
-### 20210506 - P58 - Pxx
+確認相關記憶體使用狀況，參考[教學文件](https://coderzcolumn.com/tutorials/python/how-to-profile-memory-usage-in-python-using-memory-profiler)
+```shell
+ mprof run tests/memory_usage.py   
+ mprof plot [filename]
+```
+1. 記憶體節省使用弱參照 P97
+2. 記憶體節省降低中間計算的 grad P99
+
+### 20210506 - P58 - P96
 1. 調整 Variable 
     a. 修改變數反向傳播 P67
     b. 變數再接收回傳 grad 的時候，必須接收所有當次回送回來的 grad P71
