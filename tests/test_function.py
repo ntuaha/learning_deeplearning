@@ -124,4 +124,4 @@ def test_complex_path():
     a = square(x)
     y = add(square(a),square(a))
     y.backward()
-    assert y.grad == np.array(1) and x.grad == np.array(64)
+    assert y.data == np.array(32) and x.grad == np.array(64)
