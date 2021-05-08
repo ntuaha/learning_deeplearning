@@ -60,4 +60,17 @@ def test_default_grad():
     x = Variable(np.array(2.0))
     y = square(x)
     y.backward()
-    assert y.grad == np.array(1)
+    assert y.grad != np.array(1)
+    # P101
+    assert y.grad is None
+
+def test_retain_grad():
+    x0 = Variable(np.array(1))
+    x1 = Variable(np.array(1))
+    t = add(x0,x1)
+    y = add(x0,t)
+    y.backward()
+    assert (y.grad,t.grad) == (np.array(1),None)
+    assert (x0.grad,x1.grad) == (2,np.array(1)) # y = 2x0 + x1
+
+

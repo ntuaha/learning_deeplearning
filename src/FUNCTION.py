@@ -1,4 +1,5 @@
 from .VARIABLE import Variable
+from .Config import Config
 import numpy as np
 import weakref
 
@@ -17,13 +18,15 @@ class Function:
             ys = (ys,)
         # P46
         outputs = [Variable(as_array(y)) for y in ys]
-        # P84
-        self.generation = max([x.generation for x in inputs])
-        # P31
-        for output in outputs:
-            output.set_creator(self)
-        self.inputs = inputs
-        self.outputs = [weakref.ref(output) for output in outputs]
+        # P102
+        if Config.enable_backprob:
+            # P84
+            self.generation = max([x.generation for x in inputs])
+            # P31
+            for output in outputs:
+                output.set_creator(self)
+            self.inputs = inputs
+            self.outputs = [weakref.ref(output) for output in outputs]
         return outputs if len(outputs) > 1 else outputs[0]
 
     def forward(self,xs):
