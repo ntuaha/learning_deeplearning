@@ -85,11 +85,13 @@ def exp(x):
 
 def add(x1,x2):
     # P42
-    return Add()(x1,x2)
+    # P121
+    return Add()(x1,as_array(x2))
 
 def mutiple(x1,x2):
     # P42
-    return Mutiple()(x1,x2)   
+    # P121
+    return Mutiple()(x1,as_array(x2))
 
 Variable.__add__ = add
 Variable.__mul__ = mutiple
