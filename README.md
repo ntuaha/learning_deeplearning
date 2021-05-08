@@ -16,6 +16,7 @@
 3. add Name attr in a Variable class
 4. 讓 Variable 有 shape attr
 5. 逐步調整 Variable 看起來像似 numpy P113 開始
+6. 讓所有輸入參數都要轉換成 Variable
 
 ### 20210507 - P101
 參考工具 https://pypi.org/project/memory-profiler/

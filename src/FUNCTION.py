@@ -9,9 +9,15 @@ def as_array(x):
         return np.array(x)
     return x
 
+def as_variable(obj):
+    if isinstance(obj,Variable):
+        return obj
+    return Variable(obj)
+
 class Function:
     def __call__(self,*inputs):
-        
+        # P120
+        inputs = [as_variable(x) for x in inputs]
         xs = [x.data for x in inputs]
         ys = self.forward(*xs)
         if not isinstance(ys, tuple):
@@ -85,3 +91,5 @@ def mutiple(x1,x2):
     # P42
     return Mutiple()(x1,x2)   
 
+Variable.__add__ = add
+Variable.__mul__ = mutiple
