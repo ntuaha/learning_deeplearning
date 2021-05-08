@@ -66,4 +66,4 @@ class Mutiple(Function):
         return x1*x2
     
     def backward(self,gy):
-        return self.inputs[1].data,self.inputs[0].data
+        return self.inputs[1].data*gy,self.inputs[0].data*gy

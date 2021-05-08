@@ -104,9 +104,10 @@ def test_add_two_same_variable():
 def test_mutiple():
     x1 = Variable(np.array(1))
     x2 = Variable(np.array(2))
-    y = mutiple(x1,x2)
+    x3 = Variable(np.array(3))
+    y = add(mutiple(x3,x2),x1)
     y.backward()
-    assert (x1.grad == 2) and (x2.grad == 1)
+    assert (y.data == np.array(7)) and (x2.grad == 3) and (x3.grad==2)
 
 
 def test_double_usage_same_variable():

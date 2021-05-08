@@ -87,3 +87,4 @@ def test_property():
     assert x.shape == (2,3)
     assert x.size == 6
     assert x.dtype == np.float64
+    assert len(x) == 2

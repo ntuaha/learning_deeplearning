@@ -15,6 +15,7 @@
 2. 透過 with 的語法，好讓 Config 可以切換更快速
 3. add Name attr in a Variable class
 4. 讓 Variable 有 shape attr
+5. 逐步調整 Variable 看起來像似 numpy P113 開始
 
 ### 20210507 - P101
 參考工具 https://pypi.org/project/memory-profiler/

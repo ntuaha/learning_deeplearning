@@ -31,6 +31,16 @@ class Variable:
     def dtype(self):
         return self.data.dtype
 
+    def __len__(self):
+        return len(self.data)
+    
+    def __repr__(self):
+        if self.data is None:
+            return 'variable(None)'
+        p = str(self.data).replace("\n","\n"+ ' '*9)
+        return f'variable({p})'
+    
+
     def __eq__(self,that):
         # how to define a good eq function
         # ref: https://openhome.cc/Gossip/Python/ObjectEquality.html
