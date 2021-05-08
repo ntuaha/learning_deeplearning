@@ -104,9 +104,10 @@ def test_add_two_same_variable():
 def test_mutiple():
     x1 = Variable(np.array(1))
     x2 = Variable(np.array(2))
-    y = mutiple(x1,x2)
+    x3 = Variable(np.array(3))
+    y = add(mutiple(x3,x2),x1)
     y.backward()
-    assert (x1.grad == 2) and (x2.grad == 1)
+    assert (y.data == np.array(7)) and (x2.grad == 3) and (x3.grad==2)
 
 
 def test_double_usage_same_variable():
@@ -119,3 +120,32 @@ def test_double_usage_same_variable():
     y.backward()
     assert (x.grad == 2)
 
+def test_complex_path():
+    x = Variable(np.array(2))
+    a = square(x)
+    y = add(square(a),square(a))
+    y.backward()
+    assert y.data == np.array(32) and x.grad == np.array(64)
+
+def test_mutiple2():
+    # P117
+    x1 = Variable(np.array(1))
+    x2 = Variable(np.array(2))
+    x3 = Variable(np.array(3))
+    y = x3 * x2 + x1
+    y.backward()
+    assert (y.data == np.array(7)) and (x2.grad == 3) and (x3.grad==2)
+
+def test_inputs():
+    # P120
+    x = Variable(np.array(2)) + np.array(3)
+    assert np.array(5) == x.data
+    # P121    
+    x = Variable(np.array(2)) + 3.0
+    assert np.array(5) == x.data
+    # P123
+    x = 3.0 * Variable(np.array(2))
+    assert np.array(6) == x.data    
+    # P123
+    x = np.array([3.0]) * Variable(np.array([2]))
+    assert np.array(6) == x.data      

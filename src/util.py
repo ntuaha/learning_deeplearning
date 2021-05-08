@@ -10,18 +10,3 @@ def numerical_diff(f,x,eps=1e-4):
     y1 = f(x1)
     return (y1.data - y0.data)/ (2 * eps)
 
-def square(x):
-    # P42
-    return Square()(x)
-
-def exp(x):
-    # P42
-    return Exp()(x)
-
-def add(x1,x2):
-    # P42
-    return Add()(x1,x2)
-
-def mutiple(x1,x2):
-    # P42
-    return Mutiple()(x1,x2)    
