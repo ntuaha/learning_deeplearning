@@ -140,7 +140,12 @@ def test_inputs():
     # P120
     x = Variable(np.array(2)) + np.array(3)
     assert np.array(5) == x.data
-    # P121
-        # P120
+    # P121    
     x = Variable(np.array(2)) + 3.0
     assert np.array(5) == x.data
+    # P123
+    x = 3.0 * Variable(np.array(2))
+    assert np.array(6) == x.data    
+    # P123
+    x = np.array([3.0]) * Variable(np.array([2]))
+    assert np.array(6) == x.data      

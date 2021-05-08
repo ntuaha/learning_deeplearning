@@ -95,3 +95,6 @@ def mutiple(x1,x2):
 
 Variable.__add__ = add
 Variable.__mul__ = mutiple
+# P122
+Variable.__radd__ = add
+Variable.__rmul__ = mutiple
