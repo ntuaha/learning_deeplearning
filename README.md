@@ -13,6 +13,7 @@
 
 1. 新增Config，好方便快速建立有沒有反向傳播的資訊
 2. 透過 with 的語法，好讓 Config 可以切換更快速
+3. add Name attr in a Variable class
 
 ### 20210507 - P101
 參考工具 https://pypi.org/project/memory-profiler/

@@ -74,3 +74,9 @@ def test_retain_grad():
     assert (x0.grad,x1.grad) == (2,np.array(1)) # y = 2x0 + x1
 
 
+def test_variable_name():
+    x = Variable(np.array(1))
+    assert x.name == None
+    v_name = '1244'
+    x = Variable(np.array(1),v_name)
+    assert x.name == v_name

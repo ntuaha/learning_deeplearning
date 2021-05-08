@@ -1,6 +1,6 @@
 import numpy as np
 class Variable:
-    def __init__(self,data):
+    def __init__(self,data,name = None):
         if data is not None:
             if not isinstance(data, np.ndarray):
                 raise TypeError(f'{type(data)} is not supported')
@@ -11,6 +11,8 @@ class Variable:
         self.creator = None
         # P83
         self.generation = 0
+        # P107
+        self.name = name
 
 
     def __eq__(self,that):
