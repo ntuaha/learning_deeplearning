@@ -15,6 +15,22 @@ class Variable:
         self.name = name
 
 
+    # P108
+    @property
+    def shape(self):
+        return self.data.shape
+    @property
+    def ndim(self):
+        return self.data.ndim
+    
+    @property
+    def size(self):
+        return self.data.size
+    
+    @property
+    def dtype(self):
+        return self.data.dtype
+
     def __eq__(self,that):
         # how to define a good eq function
         # ref: https://openhome.cc/Gossip/Python/ObjectEquality.html

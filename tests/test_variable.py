@@ -80,3 +80,10 @@ def test_variable_name():
     v_name = '1244'
     x = Variable(np.array(1),v_name)
     assert x.name == v_name
+
+
+def test_property():
+    x = Variable(np.ones((2,3)))
+    assert x.shape == (2,3)
+    assert x.size == 6
+    assert x.dtype == np.float64
